@@ -1,0 +1,90 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerMovement : MonoBehaviour
+{
+/*\ declaration public parametre consultable/editable  \*/
+
+    private Vector3 velocity = Vector3.zero ; //declar vecteur 3D
+    public float moveSpeed = 50 ;  //Define the speed at which the object moves.
+    public float horizontalInput ; // de -1 a +1
+    public float verticalInput ;    // -1 +1
+    public int lifeLeft = 3 ;
+
+    public Rigidbody2D rb ;      //On y affecte le RB associe depuis l interface
+    public Animator animator ;   //appel animateur 2D
+    public SpriteRenderer spriteRenderer ;   //appel rendu sprite 2D
+/*\   \*/
+
+/*\ Start is called before the first frame update  \*/ 
+void Start()
+    {
+/*\ tentative raycast + creation GameObject grace script \*/
+    /* draw a 5-unit white line from the origin for 2.5 seconds
+    Debug.DrawLine(Vector3.zero, new Vector3(5, 0, 0), Color.white, 2.5f);
+    GameObject go1 = new GameObject();
+    go1.name = "go1";
+    go1.AddComponent<Rigidbody>();
+    */
+    }
+
+
+/*\ Update is called once per frame  \*/
+void Update()
+    {  
+        if(lifeLeft == 0)
+        {
+            print("Vous avez mouru !");
+        }
+    }
+
+
+/*\ Update is called every frame update  \*/
+void FixedUpdate()
+    {   
+/*\ 2 types acquisition croix directionelle \*/
+    horizontalInput = Input.GetAxis("Horizontal") ; // moveSpeed=50 == GetAxis
+    verticalInput = Input.GetAxis("Vertical");
+    //MovePlayerAxis(horizontalInput, verticalInput) ;
+/*\ transform de mvt orthogonal joueur  \*/
+    transform.Translate(new Vector3(horizontalInput, verticalInput, 0) * moveSpeed * Time.deltaTime);
+/*\ OLD_Fonction de Mvt orthogonal joueur \*/
+      /*  void MovePlayerAxis(float horizontalInput, float verticalInput)
+        {
+            Vector3 targetVelocity = new Vector2(horizontalInput, verticalInput);
+            rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref velocity, .05f); 
+        }*/
+
+
+/*\ envoi a l animateur de l etat Mvt joueur /*\
+    //animator.SetFloat("speed H", horizontalInput) ;
+    //animator.SetFloat("speed V", verticalInput) ;
+
+/*\  retour console croix directionelle \*/
+    if (Input.GetKey(KeyCode.UpArrow))
+        {
+        print("up arrow key is held down");
+        //timer           
+        }
+    if (Input.GetKey(KeyCode.DownArrow))
+        {
+        print("down arrow key is held down");
+        //timer
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
