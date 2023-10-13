@@ -1,0 +1,26 @@
+#*Scene 01*
+
+Man :
+"oh hello wanderer !
+Are you here to hear the full story or just see the gameplay ?"
+
+[]Yes
+[]No
+**Bool Story = [Yes/No];**
+
+if []Yes
+"oh.. i see...
+So basically you're a wanderer, you just woke up with no memories, the player can't hear what you say and the default button to interact is 'GetKeyDown='space'
+Ok now get this CV and GET OUT !"
+
+if []No
+ "oh ! i see you thrive this experience !
+Good. This means the *developper* didn't waste his time typing down everything !
+So you woke up huh ? i found you near the beach *incounscious*
+Whaaat ? You don't remember a single thing ?!
+Wow, a waking up character with anmesia !... how original...
+Well YOU MUST have a sacred mission going on soooo...
+You should go ! Something tells me that you should start by going to the south
+It is dangerous to go alone, here take this CV."
+
+#*Scene 02*
