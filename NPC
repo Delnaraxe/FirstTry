@@ -1,0 +1,39 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class NPC : MonoBehaviour
+{
+    public Rigidbody2D rb;
+    public Animator animator;
+    /*\ \*/
+    void Start()
+    {
+        
+    }
+    void Update()
+    {
+    
+    }
+    /*\
+        if (GameObject.Tag == "player" && Input.GetKey("space"))
+        {
+            print("Hello, it's dangerous to go alone take this CV");
+        }
+    \*/
+
+
+    /*\ Trigger de collision a l'impact PNJ \*/
+    /*\ Collision use Kinematic triggered, Trigger don't \*/
+    /*\ OnTriggerEnter|OnTriggerStay|OnTriggerExit\*/
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player") && Input.GetKey(KeyCode.Space))
+        {
+            print("Hello, it's dangerous to go alone take this CV");
+        }
+    }
+
+
+}
+
