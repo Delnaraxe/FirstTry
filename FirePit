@@ -5,49 +5,122 @@ using UnityEngine;
 public class FirePit : MonoBehaviour
 {
 
-    public CapsuleCollider2D Collider;
-    public GameObject GameObject;
-        
+    public Collider2D Collider;
+    //public GameObject GameObject; //pourquoi deja ?
+
+    public float distance = 5 ;  //replica PlayerMovement()
+    public float moveSpeed = 2 ;  //Define the speed at which the object moves.
+    public Vector3 dir ;
+    public float horizontalInput ; 
+    public float verticalInput ; 
+
     public bool isTrigger;
 
     void Update()
     {
-
+        horizontalInput = Input.GetAxis("Horizontal") ; 
+        verticalInput = Input.GetAxis("Vertical") ;
     }
-
-    /*void OnCollisionEnter2D(Collision2D collision)   //don't work CompareTag
+    /*\ Utilisation de collision \*/
+    void OnCollisionEnter2D(Collision2D collision)   
     {
-        if (collision.Transform.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             print("ouch!");
-            //GameObject.Player.lifeLeft = lifeLeft--;
-            // GameObject.GetComponent<PlayerMouvement>().lifeLeft = lifeLeft--;
+          
+            /*        //detection direction pour KnockBack
+            switch (Input.GetKey())
+            {
+                case KeyCode.UpArrow:
+                collision.gameObject.transform.Translate(new Vector3(0, -2, 0));
+                break;
+            } */
+
+            switch (verticalInput)
+            {
+                case < 0:
+                collision.gameObject.transform.Translate(new Vector3(0, 1, 0));
+                break ;
+                case > 0:
+                collision.gameObject.transform.Translate(new Vector3(0, -1, 0));
+                break ;                  
+            }
+
+            switch (horizontalInput)
+            {
+                case < 0:
+                collision.gameObject.transform.Translate(new Vector3(1, 0, 0));
+                break ;
+                case > 0:
+                collision.gameObject.transform.Translate(new Vector3(-1, 0, 0));
+                break ;            
+            }   
+
+
+     
+            //collision.gameObject.Player.lifeLeft = lifeLeft--;
+            //ou
+            //GameObject.GetComponent<PlayerMouvement>().lifeLeft = lifeLeft--;
             //timer 2sec
         }
-    }*/
+    }
 
+    /* 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
             print("ouch!");
 
-            KnockBack knockBack = collision.transform.GetComponent<KnockBack>();
-            knockBack.KnockBack(85);
+          //  KnockBack knockBack = collision.transform.GetComponent<KnockBack>();
+          //  knockBack.KnockBack(85);
         }
     }
+    */
 
 
-            /*
-            isTriggerEntry (CapsuleCollider2D. == isTrigger)
+
+    /*\                                  // Coroutine :
+    public class script : Monobehavior
+    {
+    public int timer = 2 ;
+    private void start()
+        {
+            if (IsTrigger)
             {
-                GameObject.player.lifeLeft--;
-                timer 2secondes;
-
-                methode hors update TakingHit() + timer 
+            StartCoroutine(MyCoroutine());
             }
-            */       
+        }
+
+    IEnumerator MyCoroutine() // Different du void MyCoroutine()
+        {
+            print("MyCoroutine has started !");
+            yield return new WaitForSeconds(timer);
+            print("MyCoroutine is done !");
+        //return null;
+        }
+    }   
+    \*/
+    /*              //Perte point de vie 
+    isTriggerEntry (CapsuleCollider2D. == isTrigger)
+    {
+        GameObject.player.lifeLeft--;
+        timer 2secondes;
+        methode hors update TakingHit() + timer 
+    }
+    */    
+
+
+
+
+    /*\             //KnockBack pas accept2 ?
+    private void KnockBack(int distance);
+    {
+        //transform.Translate(new Vector3(0, distance, 0) * moveSpeed * Time.deltaTime);
+    }
+    \*/ 
+
+
+
 
 }
-
-
