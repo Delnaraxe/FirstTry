@@ -1,0 +1,53 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class FirePit : MonoBehaviour
+{
+
+    public CapsuleCollider2D Collider;
+    public GameObject GameObject;
+        
+    public bool isTrigger;
+
+    void Update()
+    {
+
+    }
+
+    /*void OnCollisionEnter2D(Collision2D collision)   //don't work CompareTag
+    {
+        if (collision.Transform.CompareTag("Player"))
+        {
+            print("ouch!");
+            //GameObject.Player.lifeLeft = lifeLeft--;
+            // GameObject.GetComponent<PlayerMouvement>().lifeLeft = lifeLeft--;
+            //timer 2sec
+        }
+    }*/
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            print("ouch!");
+
+            KnockBack knockBack = collision.transform.GetComponent<KnockBack>();
+            knockBack.KnockBack(85);
+        }
+    }
+
+
+            /*
+            isTriggerEntry (CapsuleCollider2D. == isTrigger)
+            {
+                GameObject.player.lifeLeft--;
+                timer 2secondes;
+
+                methode hors update TakingHit() + timer 
+            }
+            */       
+
+}
+
+
