@@ -13,8 +13,9 @@ public class PlayerMovement : MonoBehaviour
     public int lifeLeft = 3 ;
 
     public Rigidbody2D rb ;      //On y affecte le RB associe depuis l interface
-    public Animator animator ;   //appel animateur 2D
-    public SpriteRenderer spriteRenderer ;   //appel rendu sprite 2D
+    
+    //public Animator animator ;   //appel animateur 2D
+    //public SpriteRenderer spriteRenderer ;   //appel rendu sprite 2D
     /*\   \*/
 
     /*\ Start is called before the first frame update  \*/ 
@@ -56,11 +57,10 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref velocity, .05f); 
         }*/
 
-
     /*\ envoi a l animateur de l etat Mvt joueur \*/
-        animator.SetFloat("speed H", horizontalInput) ;
-        animator.SetFloat("speed V", verticalInput) ;
-
+    //    animator.SetFloat("speed H", horizontalInput) ;
+    //    animator.SetFloat("speed V", verticalInput) ;
+        
     /*\  retour console croix directionelle \*/
         if (Input.GetKey(KeyCode.UpArrow))
         {
@@ -76,27 +76,4 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    /*\ le knockback  \*/
-    public void KnockBack(int distance);
-    {
-        transform.Translate(new Vector3(0, distance, 0) * moveSpeed * Time.deltaTime);
-    }
-    /*\ COroutine :
-    public class script : Monobehavior
-    {
-        public int timer = 2 ;
-        private void start()
-        {
-            if (something ? true)
-            StartCoroutine(MyCoroutine());
-        }
-
-        IEnumerator MyCoroutine() // Different du void MyCoroutine()
-        {
-            print("MyCoroutine has started !");
-            yield return new WaitForSeconds(timer);
-            print("MyCoroutine is done !");
-            //return null;
-        }
-    }   \*/
 }
